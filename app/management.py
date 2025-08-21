@@ -4,18 +4,33 @@ from app.data_processing import DataProcessing
 
 class Management:
 
-    iranmaldb = ConnectionDB("IranMalDB","tweets")
+    def __init__(self):
+        #connction to the DB
+        self.iranmaldb = ConnectionDB("IranMalDB", "tweets")
+        #convert to df
+        self.df = self.iranmaldb.collection_to_df()
+        #creat object of DataProcessing
+        self.processing = DataProcessing(self.df)
+        #processing the df and add col of rate_word
+        self.processing.create_rate_word()
+        #processing the df and add col of weapon
+        self.processing.create_weapon()
+        #processing the df and add col of sentiment
+        self.processing.create_sentiment()
 
-    #print(iranmaldb.get_all_documents())
 
-    df = iranmaldb.collection_to_df()
-    print(df)
+    #return the data processed
+    def get_data_processed(self):
+        return self.df
 
-    processing = DataProcessing(df)
 
-    processing.create_rate_word()
 
-    processing.create_rate_word()
+
+
+
+
+
+
 
 
 
