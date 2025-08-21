@@ -1,12 +1,14 @@
 from pymongo import MongoClient
 import pandas as pd
 import os
+from dotenv import load_dotenv
 
 class ConnectionDB:
     def __init__(self, db_name, collection_name):
         mongo_uri_conn = os.getenv("CONN_STRING")
 
         uri = "mongodb+srv://IRGC:iraniraniran@iranmaldb.gurutam.mongodb.net/"#test
+       # uri = mongo_uri_conn
 
         # connecting to server
         self.client = MongoClient(uri)
