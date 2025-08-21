@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alicious_text_feature_project
+spec:
+  selector:
+    matchLabels:
+      app: alicious_text_feature_project
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: alicious_text_feature_project
+    spec:
+      containers:
+      - image: alicious_text_feature_project:latest
+        name: alicious_text_feature_project
+        env:
+        - name: alicious_text_feature_project_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: alicious_text_feature_project-secret
+              key: password
+        ports:
+        - containerPort: 3306
+          name: alicious_text_feature_project
+        volumeMounts:
+        - name: alicious_text_feature_project-persistent-storage
+          mountPath: /var/lib/alicious_text_feature_project
+      volumes:
+      - name: alicious_text_feature_project-persistent-storage
+        persistentVolumeClaim:
+          claimName: alicious_text_feature_project-pv-claim
