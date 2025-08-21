@@ -1,4 +1,5 @@
 from pymongo import MongoClient
+import pandas as pd
 import os
 
 class ConnectionDB:
@@ -17,10 +18,9 @@ class ConnectionDB:
     def get_all_documents(self):
         return list(self.collection.find())
 
-#testing
-c = ConnectionDB("IranMalDB","tweets")
-print(c.get_all_documents())
+    def collection_to_df(self):
+        documents = self.get_all_documents()
+        df = pd.DataFrame(documents)
+        return df
 
-#mongo_uri = os.getenv("CONN_STRING")
-#print("Mongo URI:", mongo_uri)
 
