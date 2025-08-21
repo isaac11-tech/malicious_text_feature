@@ -8,7 +8,7 @@ class ConnectionDB:
         mongo_uri_conn = os.getenv("CONN_STRING")
 
         uri = "mongodb+srv://IRGC:iraniraniran@iranmaldb.gurutam.mongodb.net/"#test
-       # uri = mongo_uri_conn
+        #uri = mongo_uri_conn
 
         # connecting to server
         self.client = MongoClient(uri)
