@@ -17,10 +17,6 @@ class ConnectionDB:
     def get_all_documents(self):
         return list(self.collection.find())
 
-
-
-
-
 #testing
 c = ConnectionDB("IranMalDB","tweets")
 print(c.get_all_documents())
