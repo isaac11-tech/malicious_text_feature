@@ -1,10 +1,15 @@
-FROM python:3.11
+FROM python:3.11-slim
 
 WORKDIR /app
 
 COPY requirements.txt .
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-CMD ["gunicorn", "-k", "uvicorn.workers.UvicornWorker", "main:app", "--bind", "0.0.0.0:8000"]
+
+ENV MONGO_URI_CONN="mongodb://user:pass@host:27017/dbname"
+
+EXPOSE 8000
+
+CMD ["uvicorn","app.main:app","--host","0.0.0.0","--port","8000"]
