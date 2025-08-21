@@ -4,7 +4,7 @@ metadata:
   name: alicious_text_feature_project
   namespace: itzchaktunik-dev
 spec:
-  type: NodePort  # Change to LoadBalancer if using cloud provider
+  type: NodePort
   ports:
     - protocol: TCP
       port: 3307
